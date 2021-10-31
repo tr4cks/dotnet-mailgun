@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- NuGet package properties -->
+    <PackageId>Mailgun.Client.DependencyInjection</PackageId>
+    <Version>1.0.0</Version>
+    <RepositoryUrl>https://github.com/tr4cks/dotnet-mailgun</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- NuGet dependencies -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <!-- Local dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Mailgun.Client\Mailgun.Client.csproj" />
+  </ItemGroup>
+
+</Project>
