@@ -2,7 +2,7 @@
 
 namespace Mailgun.Client.DependencyInjection; 
 
-public class InjectableMailgunClient : MailgunClient {
+internal class InjectableMailgunClient : MailgunClient {
     public InjectableMailgunClient(IOptions<MailgunClientOptions> optionsAccessor) :
         base(optionsAccessor.Value) {}
 }
