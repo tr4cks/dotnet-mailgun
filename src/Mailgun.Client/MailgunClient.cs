@@ -1,27 +1,49 @@
-﻿using System.Text;
+﻿using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Text;
 
-namespace Mailgun.Client; 
+namespace Mailgun.Client;
 
 public class MailgunClient : IMailgunClient {
     private readonly MailgunClientOptions _options;
-    private readonly string _authorizationHeader;
-    private readonly IMailgunApi _client;
+    private readonly HttpClient _client;
 
-    public MailgunClient(MailgunClientOptions options) {
-        _options = options;
-        _authorizationHeader =
+    public MailgunClient(HttpClient client, MailgunClientOptions options) {
+        var authorizationHeader =
             Convert.ToBase64String(Encoding.UTF8.GetBytes($"api:{options.ApiKey}"));
-        _client = IMailgunApi.CreateInstance(options.BaseUrl);
+        client.BaseAddress = new Uri(options.BaseUrl ?? IMailgunClient.BaseUrls.Eu);
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Basic", authorizationHeader);
+
+        _options = options;
+        _client = client;
     }
 
-    public Task<HttpResponseMessage> SendMessage(string from, string to,
-        string subject, string text) {
-        Dictionary<string, object> @params = new() {
-            {"from", from},
-            {"to", to},
-            {"subject", subject},
-            {"text", text}
+    public Task<HttpResponseMessage> SendMessage(MailMessage message) {
+        MultipartFormDataContent content = new() {
+            { new StringContent(message.Subject), "subject" }
         };
-        return _client.SendMessage(_options.Domain, _authorizationHeader, @params);
+        if (message.From is not null) {
+            content.Add(
+                new StringContent($"{message.From.DisplayName} <{message.From.Address}>"),
+                "from");
+        }
+        foreach (var mailAddress in message.To) {
+            content.Add(new StringContent(mailAddress.Address), "to");
+        }
+        content.Add(new StringContent(message.Body),
+            message.IsBodyHtml ? "html" : "text");
+        foreach (var attachment in message.Attachments) {
+            content.Add(new StreamContent(attachment.ContentStream), "attachment");
+        }
+        return SendMessage(content);
+    }
+
+    private Task<HttpResponseMessage> SendMessage(HttpContent content) {
+        HttpRequestMessage request = new(HttpMethod.Post,
+            $"/v3/{_options.Domain}/messages") {
+            Content = content
+        };
+        return _client.SendAsync(request);
     }
 }

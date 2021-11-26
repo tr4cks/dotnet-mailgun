@@ -1,6 +1,10 @@
-﻿namespace Mailgun.Client; 
+﻿using System.Net.Mail;
+
+namespace Mailgun.Client;
 
 public interface IMailgunClient {
-    Task<HttpResponseMessage> SendMessage(string from, string to,
-        string subject, string text);
+    static readonly (string Us, string Eu) BaseUrls = (
+        "https://api.mailgun.net/", "https://api.eu.mailgun.net/");
+
+    Task<HttpResponseMessage> SendMessage(MailMessage message);
 }

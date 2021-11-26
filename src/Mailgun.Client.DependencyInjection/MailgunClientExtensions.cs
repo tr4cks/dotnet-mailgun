@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Mailgun.Client.DependencyInjection; 
+namespace Mailgun.Client.DependencyInjection;
 
 public static class MailgunClientExtensions {
     static void PrepareMailgunClient(this IServiceCollection @this) {
-        @this.TryAddScoped<IMailgunClient, InjectableMailgunClient>();
+        @this.AddHttpClient<IMailgunClient, InjectableMailgunClient>();
     }
-    
+
     public static IServiceCollection AddMailgunClient(this IServiceCollection @this) {
         @this.AddMailgunClient(setupAction: null);
         return @this;
