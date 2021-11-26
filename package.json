@@ -1,6 +1,6 @@
 {
   "name": "dotnet-mailgun",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "prepare": "husky install",
     "format": "dotnet format && prettier --write ."

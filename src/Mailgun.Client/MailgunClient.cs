@@ -34,7 +34,13 @@ public class MailgunClient : IMailgunClient {
         content.Add(new StringContent(message.Body),
             message.IsBodyHtml ? "html" : "text");
         foreach (var attachment in message.Attachments) {
-            content.Add(new StreamContent(attachment.ContentStream), "attachment");
+            if (attachment.Name is not null) {
+                content.Add(new StreamContent(attachment.ContentStream), "attachment",
+                    attachment.Name);
+            }
+            else {
+                content.Add(new StreamContent(attachment.ContentStream), "attachment");
+            }
         }
         return SendMessage(content);
     }
