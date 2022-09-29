@@ -1,14 +1,49 @@
-# dotnet-mailgun
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
 
-How to add a NuGet source:
 
-```sh
-$ dotnet nuget add source https://nuget.pkg.github.com/USERNAME/index.json --name github --username "USERNAME" --password "PASSWORD"
-```
 
-How to pack and push a NuGet package:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/tr4cks/hotchocolate-types-fido2">
+    <img src="assets/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-```sh
-$ dotnet pack --configuration Release
-$ dotnet nuget push .\src\Mailgun.Client\bin\Release\Mailgun.Client.VERSION.nupkg --source github
-```
+<h3 align="center">dotnet-mailgun</h3>
+
+  <p align="center">
+    ⚠️ FIRST RELEASE AND DOCUMENTATION COMING SOON ⚠️
+  </p>
+</div>
+
+<br />
+
+[![GitHub](https://img.shields.io/github/license/tr4cks/dotnet-mailgun)](https://github.com/tr4cks/dotnet-mailgun/blob/main/LICENSE)
+
+---
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+Mailgun client simple in its functionality and usability.
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CREDITS -->
+## Credits
+
+* [Email icônes créées par Freepik - Flaticon](https://www.flaticon.com/fr/icones-gratuites/email)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
