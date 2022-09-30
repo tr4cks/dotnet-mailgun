@@ -1,0 +1,39 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>tr4cks</Authors>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/tr4cks/dotnet-mailgun</RepositoryUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <!-- Email icônes créées par Freepik - Flaticon -->
+        <PackageIcon>logo.png</PackageIcon>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath />
+            <Link>LICENSE</Link>
+            <Visible>False</Visible>
+        </None>
+        <None Include="..\..\assets\logo.png">
+            <Pack>True</Pack>
+            <PackagePath />
+            <Link>logo.png</Link>
+            <Visible>False</Visible>
+        </None>
+    </ItemGroup>
+
+</Project>

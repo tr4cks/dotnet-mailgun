@@ -1,34 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <SolutionDir>$(ProjectDir)..\..\</SolutionDir>
 
-    <!-- NuGet package properties -->
+  <PropertyGroup>
     <PackageId>Mailgun.Client</PackageId>
-    <Version>1.0.6</Version>
-    <RepositoryUrl>https://github.com/tr4cks/dotnet-mailgun</RepositoryUrl>
+    <PackageVersion>1.0.0-preview.1</PackageVersion>
+    <Description>Simple Mailgun client</Description>
+    <PackageTags>Client;Mailgun</PackageTags>
   </PropertyGroup>
 
-  <!-- Npm dependencies installation -->
-  <Target
-    Name="DebugEnsureNodeEnv"
-    BeforeTargets="Build"
-    Condition="'$(Configuration)' == 'Debug' And !Exists('$(SolutionDir)node_modules')"
-  >
-    <!-- Ensure Node.js is installed -->
-    <Exec Command="node --version" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-    </Exec>
-    <Error
-      Condition="'$(ErrorCode)' != '0'"
-      Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE."
-    />
-    <Message
-      Importance="high"
-      Text="Restoring dependencies using 'npm'. This may take several minutes..."
-    />
-    <Exec WorkingDirectory="$(SolutionDir)" Command="npm install" />
-  </Target>
 </Project>
