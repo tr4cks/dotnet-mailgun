@@ -2,7 +2,8 @@
 
 namespace Mailgun.Client;
 
-public class MailgunClientOptions {
+public class MailgunClientOptions
+{
 #nullable disable
 
     [Required]

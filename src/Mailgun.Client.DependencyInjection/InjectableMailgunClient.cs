@@ -2,8 +2,10 @@
 
 namespace Mailgun.Client.DependencyInjection;
 
-internal class InjectableMailgunClient : MailgunClient {
+internal class InjectableMailgunClient : MailgunClient
+{
     public InjectableMailgunClient(
         HttpClient client, IOptions<MailgunClientOptions> optionsAccessor) :
-        base(client, optionsAccessor.Value) { }
+        base(client, optionsAccessor.Value)
+    { }
 }

@@ -3,21 +3,26 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Mailgun.Client.DependencyInjection;
 
-public static class MailgunClientExtensions {
-    static void PrepareMailgunClient(this IServiceCollection @this) {
+public static class MailgunClientExtensions
+{
+    static void PrepareMailgunClient(this IServiceCollection @this)
+    {
         @this.AddHttpClient<IMailgunClient, InjectableMailgunClient>();
     }
 
-    public static IServiceCollection AddMailgunClient(this IServiceCollection @this) {
+    public static IServiceCollection AddMailgunClient(this IServiceCollection @this)
+    {
         @this.AddMailgunClient(setupAction: null);
         return @this;
     }
 
     public static IServiceCollection AddMailgunClient(
         this IServiceCollection @this,
-        Action<MailgunClientOptions>? setupAction) {
+        Action<MailgunClientOptions>? setupAction)
+    {
         @this.PrepareMailgunClient();
-        if (setupAction is not null) {
+        if (setupAction is not null)
+        {
             @this.AddOptions<MailgunClientOptions>()
                 .Configure(setupAction)
                 .ValidateDataAnnotations();
@@ -27,7 +32,8 @@ public static class MailgunClientExtensions {
 
     public static IServiceCollection AddMailgunClient(
         this IServiceCollection @this,
-        IConfiguration configuration) {
+        IConfiguration configuration)
+    {
         @this.PrepareMailgunClient();
         @this.AddOptions<MailgunClientOptions>()
             .Bind(configuration)
